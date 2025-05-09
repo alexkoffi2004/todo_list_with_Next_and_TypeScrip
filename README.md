@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Next.js Todo List App
 
-## Getting Started
+Une application **Todo List** construite avec **Next.js**. Elle permet aux utilisateurs de **créer**, **lire**, **modifier** et **supprimer** des tâches via des pages dédiées à chaque action.
 
-First, run the development server:
+---
+
+## 🚀 Fonctionnalités
+
+- ✅ Liste des tâches (GET)
+- ➕ Ajout d'une tâche (CREATE)
+- ✏️ Modification d'une tâche (UPDATE)
+- ❌ Suppression d'une tâche (DELETE)
+- 🧭 Navigation entre les différentes pages d'action
+- 📦 Backend léger via API Routes intégrées à Next.js
+- 🎨 Interface moderne et responsive avec Tailwind CSS (optionnel)
+
+---
+
+## 🗂️ Structure du projet
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+/app
+  ├── createtask/page.tsx              # Page d'accueil avec la liste des tâches
+  ├── deletetask/page.tsx              # Formulaire de création
+  ├── update/[taskId]/Editetask        # Formulaire de modification
+  ├── tasks/page.tsx
+  ├── page.tsx                # Confirmation de suppression
+  └── layout.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 📦 Installation
+bash
+Copier
+Modifier
+# 1. Clone le repo
+git clone https://github.com/ton-user/todo-next-app.git
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 2. Accède au dossier
+```cd todo-next-app```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 3. Installe les dépendances
+```npm install```
 
-## Learn More
+# 4. Lance le serveur de développement
+```npm run dev```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🛠️ Technologies utilisées
+- Next.js
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- React
 
-## Deploy on Vercel
+- Tailwind CSS (facultatif mais conseillé)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- React toastify
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Stockage JSON local
+
+
+
+# 💡 Idées d’amélioration
+**Ajouter une base de données (MongoDB, PostgreSQL, etc.)**
+
+**Ajout de l’authentification**
+
+**Filtrage & tri des tâches**
+
+**Dark mode**
+
+# 👨‍💻 Auteur
+Développé par **Kouadio Jean Alex Koffi**
+## ✨ Fullstack Developer passionné par les projets utiles et bien structurés.
