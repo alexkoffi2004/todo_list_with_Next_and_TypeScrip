@@ -1,38 +1,39 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { IoChevronBackCircleSharp } from "react-icons/io5";
-import { useState, useEffect } from "react"; 
-import { ITodo } from "@/interface/Todo";
-import { addTodo, deleteTodo, getTodos, toggleTodo, updateTodo } from "@/getways/todo";
+import { IoChevronBackCircleSharp } from "react-icons/io5"; 
+import { TodoStatus } from "@/interface/Todo";
+import { addTodo } from "@/getways/todo";
 import TodoForm from "@/components/TodoForm/TodoForm";
 
 export default function TodoList() {
-  const [todos, setTodos] = useState<ITodo[]>([]);
-
   const router = useRouter();
 
-  useEffect(() => {
-    setTodos(getTodos());
-  }, []);
 
-  const handleAddTodo = (title: string) => {
-    const newTodo = addTodo(title);
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  const handleAddTodo = (title: string, status: TodoStatus) => {
+    addTodo(title, status);
   };
 
-  const handleCancel =() => {
-    router.push("/")
-  }
+  const handleCancel = () => {
+    router.push("/tasks");
+  };
 
   return (
-    <main className="max-w-md mx-auto mt-10">
-      <div className="flex items-center justify-center text-center gap-2 mb-4">
-        <IoChevronBackCircleSharp className="text-3xl cursor-pointer hover:text-gray-400"
-        onClick={handleCancel}/>
-        <h1 className="text-3xl font-bold text-center items-center"> Create New Task</h1>
+    <main className="max-w-2xl mx-auto mt-10 p-6 rounded-2xl shadow-2xl bg-white transform transition-all duration-300">
+      <div className="flex items-center gap-4 mb-8">
+        <button
+          onClick={handleCancel}
+          className="p-2 text-indigo-700 hover:text-indigo-600 transition-colors duration-200"
+          aria-label="Retour"
+        >
+          <IoChevronBackCircleSharp className="text-3xl" />
+        </button>
+        <h1 className="text-3xl font-bold text-indigo-900">Create New Task</h1>
       </div>
-      <TodoForm onAdd={handleAddTodo} />
+      
+      <div className="bg-indigo-50/50 rounded-xl p-6 shadow-inner">
+        <TodoForm onAdd={handleAddTodo} />
+      </div>
     </main>
   );
 }

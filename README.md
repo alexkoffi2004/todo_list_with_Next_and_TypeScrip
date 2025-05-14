@@ -33,7 +33,7 @@ bash
 Copier
 Modifier
 # 1. Clone le repo
-git clone https://github.com/ton-user/todo-next-app.git
+git clone https://github.com/alexkoffi2004/todo_list_with_Next_and_TypeScrip.git
 
 # 2. Accède au dossier
 ```cd todo-next-app```
@@ -66,6 +66,10 @@ git clone https://github.com/ton-user/todo-next-app.git
 **Filtrage & tri des tâches**
 
 **Dark mode**
+
+## appli deployer
+
+lien: https://todo-list-with-next-and-type-scrip.vercel.app/
 
 # 👨‍💻 Auteur
 Développé par **Kouadio Jean Alex Koffi**

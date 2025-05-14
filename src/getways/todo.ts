@@ -1,4 +1,4 @@
-import { ITodo } from "@/interface/Todo";
+import { ITodo, TodoStatus } from "@/interface/Todo";
 
 const STORAGE_KEY = "todos";
 
@@ -17,12 +17,13 @@ export function getTodos(): ITodo[] {
   return getStoredTodos();
 }
 
-export function addTodo(title: string): ITodo {
+export function addTodo(title: string, status: TodoStatus = "en cours"): ITodo {
   const todos = getStoredTodos();
   const newTodo: ITodo = {
     id: Date.now(),
     title,
     completed: false,
+    status,
   };
   todos.push(newTodo);
   saveTodos(todos);
@@ -43,10 +44,10 @@ export function deleteTodo(id: number): void {
   saveTodos(updatedTodos);
 }
 
-export function updateTodo(id: number, title: string): void {
+export function updateTodo(id: number, title: string, status?: TodoStatus): void {
   const todos = getStoredTodos();
   const updatedTodos = todos.map((todo) =>
-    todo.id === id ? { ...todo, title } : todo
+    todo.id === id ? { ...todo, title, ...(status && { status }) } : todo
   );
   saveTodos(updatedTodos);
 }

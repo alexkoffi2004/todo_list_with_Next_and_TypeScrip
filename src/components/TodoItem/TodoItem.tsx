@@ -1,54 +1,59 @@
 "use client";
 
-
 import { ITodoItemProps } from "@/interface/Todo";
 import { useRouter } from "next/navigation";
 import { FaEdit } from "react-icons/fa";
+import DeleteTask from "@/components/DeleteTask/DeleteTask";
 
-import DeleteTask from "@/app/deletetask/page";  
-
-export default function TodoItem(  {todo, onToggle, onDelete }: ITodoItemProps) {
-    // const { todo, onToggle, onDelete } = props; // Déstructuration des props
-
-  const router = useRouter(); // Initialiser le routeur
+export default function TodoItem({ todo }: ITodoItemProps) {
+  const router = useRouter();
   
-    const handleEditTask = () => {
-      // Rediriger vers la page de modification avec l'ID de la tâche
-      router.push(`/updatetask/${todo.id}`);
-      console.log("Tâche sauvegardée :", todo);
-    };
+  const handleEditTask = () => {
+    router.push(`/updatetask/${todo.id}`);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'terminé':
+        return 'bg-green-100 text-green-700';
+      case 'en cours':
+        return 'bg-yellow-100 text-yellow-700';
+      default:
+        return 'bg-indigo-100 text-indigo-700';
+    }
+  };
 
   return (
-    <div className="flex items-center justify-between p-2 border-b">
-      <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => onToggle(todo.id)}
-          className="mr-2 cursor-pointer"
-        />
-      <span
-        className={` ${
-          todo.completed ? "line-through text-gray-500" : ""
-        }break-work whitespace-normal`}
-      >
-        <span className="text-gray-700 ">{todo.title}</span>
-      </span>
-      
-      <div className="flex items-center justify-between ">
-        <span className="text-gray-500 mr-15  text-center">{todo.completed ? 
-          <span className="text-green-500">Completed</span> 
-        : <span className={`text-red-400`}>Pending</span> }
+    <>
+      <div className="group flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+        <div className="flex items-center space-x-4 flex-1">
+        <span className="flex-1 text-lg text-indigo-900 group-hover:text-indigo-700 transition-all duration-200">
+          {todo.title}
         </span>
-              <div className="p-4">
-                <div className="flex items-center gap-2">
-                  <FaEdit
-                    className="edit-icon text-xl text-blue-500 hover:text-blue-700 cursor-pointer text-center"
-                    onClick={handleEditTask}
-                  />
-              </div>
-            </div>
-              <DeleteTask todo={todo} onDelete={() => onDelete(todo.id)} onToggle={() => onToggle(todo.id)} />
+      </div>
+
+      <div className="flex w-full items-center space-x-4 justify-center ml-10" >
+        <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(todo.status)}`}>
+          {todo.status}
+        </span>
+      </div>
+      
+      <div className="flex items-center space-x-4">
+        
+        
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={handleEditTask}
+            className="p-2 text-indigo-600 hover:text-indigo-700 transition-colors duration-200"
+            aria-label="Edit task"
+          >
+            <FaEdit className="w-5 h-5" />
+          </button>
+          
+          <DeleteTask todo={todo} />
+        </div>
       </div>
     </div>
+    </>
   );
 }

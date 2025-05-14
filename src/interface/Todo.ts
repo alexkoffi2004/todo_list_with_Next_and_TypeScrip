@@ -1,16 +1,17 @@
+export type TodoStatus = 'en cours' | 'terminé';
+
 export interface ITodo {
   id: number;
   title: string;
   completed: boolean;
+  status: TodoStatus;
 }
 
 export interface ITodoItemProps {
   todo: ITodo;
-  onToggle: (id: number) => void;
   onDelete: (id: number) => void;
-  // onEdit: (id: number, title: string) => void;
 }
 
 export interface ITodoFormProps {
-  onAdd: (title: string) => void;
+  onAdd: (title: string, status: TodoStatus) => void;
 }
